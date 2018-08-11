@@ -1,12 +1,9 @@
 package com.appham.demo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import com.appham.logkitten.LogKittenActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,13 +12,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(new Intent(this, LogKittenActivity.class));
+        Log.w("Demo", "Test Warning Demo");
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Log.w("Demo", "Test Warning");
 
                 throw new RuntimeException("Test Error Demo");
             }
