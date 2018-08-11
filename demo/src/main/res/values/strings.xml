@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Demo LogKitten</string>
+    <string name="logkitten_demo">LogKitten Demo!</string>
 </resources>
