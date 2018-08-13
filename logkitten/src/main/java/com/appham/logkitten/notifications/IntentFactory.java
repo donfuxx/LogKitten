@@ -3,6 +3,7 @@ package com.appham.logkitten.notifications;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.appham.logkitten.LogDetailActivity;
 import com.appham.logkitten.LogEntry;
@@ -22,6 +23,16 @@ public class IntentFactory {
         return PendingIntent.getActivity(context,
                 0,
                 chooserIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    public static PendingIntent getPendingGoogleIntent(LogEntry logEntry, Context context) {
+        Intent googleIntent = new Intent(Intent.ACTION_VIEW);
+        googleIntent.setData(Uri.parse("https://www.google.com/search?q=" + logEntry.getContent()));
+
+        return PendingIntent.getActivity(context,
+                0,
+                googleIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

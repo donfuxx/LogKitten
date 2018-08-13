@@ -57,6 +57,7 @@ public class NotificationFactory {
 
         PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(context);
         PendingIntent pendingShareIntent = IntentFactory.getPendingShareIntent(logEntry, context);
+        PendingIntent pendingGoogleIntent = IntentFactory.getPendingGoogleIntent(logEntry, context);
 
         boolean isError = "E".equals(logEntry.getLevel());
 
@@ -71,8 +72,7 @@ public class NotificationFactory {
                 .setNumber(id)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(logEntry.getContent()))
                 .addAction(R.drawable.ic_kitten_notification, "Share", pendingShareIntent)
-                .addAction(R.drawable.ic_kitten_notification, "Details", null)
-                .addAction(R.drawable.ic_kitten_notification, "Google it", null)
+                .addAction(R.drawable.ic_kitten_notification, "Google it", pendingGoogleIntent)
                 .setContentIntent(pendingDetailsIntent);
 
         if (isError) {
