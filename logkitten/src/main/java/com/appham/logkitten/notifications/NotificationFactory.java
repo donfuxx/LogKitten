@@ -46,6 +46,7 @@ public class NotificationFactory {
                     channelType.getChannelName(),
                     NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription(channelType.getChannelDesc());
+            channel.setSound(null, null);
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
