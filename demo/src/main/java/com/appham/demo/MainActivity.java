@@ -14,12 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.w("Demo", "Test Warning Demo");
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                throw new RuntimeException("Test Error Demo");
-            }
+        new Handler().postDelayed(() -> {
+            throw new RuntimeException("Test Error Demo");
         }, 2000);
     }
 }
