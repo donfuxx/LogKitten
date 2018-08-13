@@ -5,22 +5,20 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.appham.logkitten.LogDetailActivity;
 import com.appham.logkitten.LogEntry;
 import com.appham.logkitten.R;
 
 public class NotificationFactory {
 
     public static Notification createServiceNotification(Context context) {
-        Intent notificationIntent = new Intent(context, LogDetailActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = IntentFactory.getPendingDetailsIntent(context);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.ic_kitten_notification)
                 .setContentTitle("Log Kitten")
@@ -57,20 +55,8 @@ public class NotificationFactory {
     public static void newNotification(int id, LogEntry logEntry, Context context) {
         if (!logEntry.getLevel().matches("E|W")) return;
 
-        Intent notificationIntent = new Intent(context, LogDetailActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                0, notificationIntent, 0);
-
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent());
-        shareIntent.setType("text/plain");
-        Intent chooserIntent = Intent.createChooser(shareIntent, context.getResources().getText(R.string.app_name));
-
-        PendingIntent pendingShareIntent = PendingIntent.getActivity(context,
-                0,
-                chooserIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(context);
+        PendingIntent pendingShareIntent = IntentFactory.getPendingShareIntent(logEntry, context);
 
         boolean isError = "E".equals(logEntry.getLevel());
 
@@ -87,7 +73,7 @@ public class NotificationFactory {
                 .addAction(R.drawable.ic_kitten_notification, "Share", pendingShareIntent)
                 .addAction(R.drawable.ic_kitten_notification, "Details", null)
                 .addAction(R.drawable.ic_kitten_notification, "Google it", null)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingDetailsIntent);
 
         if (isError) {
             builder.setGroup("Log Kitten Entries: " + logEntry.getLevel());
@@ -96,6 +82,5 @@ public class NotificationFactory {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(id, builder.build());
     }
-
 
 }
