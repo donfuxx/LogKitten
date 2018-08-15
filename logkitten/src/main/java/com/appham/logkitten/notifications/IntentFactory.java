@@ -21,9 +21,9 @@ public class IntentFactory {
         int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
 
         return PendingIntent.getActivity(context,
-                0,
+                uniqueInt,
                 notificationIntent,
-                uniqueInt);
+                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     public static PendingIntent getPendingGoogleIntent(LogEntry logEntry, Context context) {
