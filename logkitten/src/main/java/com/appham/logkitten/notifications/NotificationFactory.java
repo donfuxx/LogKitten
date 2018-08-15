@@ -17,7 +17,7 @@ import com.appham.logkitten.R;
 public class NotificationFactory {
 
     public static Notification createServiceNotification(Context context) {
-        PendingIntent pendingIntent = IntentFactory.getPendingDetailsIntent(context);
+        PendingIntent pendingIntent = IntentFactory.getPendingDetailsIntent(new LogEntry(), context);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.ic_kitten_notification)
@@ -55,7 +55,7 @@ public class NotificationFactory {
     public static void newNotification(int id, LogEntry logEntry, Context context) {
         if (!logEntry.getLevel().matches("E|W")) return;
 
-        PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(context);
+        PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(logEntry, context);
         PendingIntent pendingShareIntent = IntentFactory.getPendingShareIntent(logEntry, context);
         PendingIntent pendingGoogleIntent = IntentFactory.getPendingGoogleIntent(logEntry, context);
 
@@ -71,6 +71,7 @@ public class NotificationFactory {
                 .setPriority(isError ? NotificationCompat.PRIORITY_MAX : NotificationCompat.PRIORITY_DEFAULT)
                 .setNumber(id)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(logEntry.getContent()))
+                .setAutoCancel(true)
                 .addAction(R.drawable.ic_kitten_notification, "Share", pendingShareIntent)
                 .addAction(R.drawable.ic_kitten_notification, "Google it", pendingGoogleIntent)
                 .setContentIntent(pendingDetailsIntent);

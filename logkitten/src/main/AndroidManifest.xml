@@ -11,7 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LogDetailActivity">
+        <activity
+            android:name=".LogDetailActivity"
+            android:label="Log Kitten Details"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.appham.logkitten"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

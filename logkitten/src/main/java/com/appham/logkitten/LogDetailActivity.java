@@ -13,7 +13,10 @@ public class LogDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_detail);
+        setTextFromIntent();
+    }
 
+    private void setTextFromIntent() {
         Intent intent = getIntent();
 
         if (intent != null && Intent.ACTION_SEND.equals(intent.getAction()) && intent.getType() != null) {
@@ -26,6 +29,5 @@ public class LogDetailActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
 }

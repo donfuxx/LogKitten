@@ -11,19 +11,19 @@ import com.appham.logkitten.R;
 
 public class IntentFactory {
 
-    public static PendingIntent getPendingDetailsIntent(Context context) {
-        Intent notificationIntent = new Intent(context, LogDetailActivity.class);
-        return PendingIntent.getActivity(context,
-                0, notificationIntent, 0);
-    }
+    public static PendingIntent getPendingDetailsIntent(LogEntry logEntry, Context context) {
+        Intent notificationIntent = getIntentShareExtras(logEntry,
+                new Intent(context, LogDetailActivity.class));
 
-    public static PendingIntent getPendingShareIntent(LogEntry logEntry, Context context) {
-        Intent chooserIntent = getChooserIntent(logEntry, context);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
 
         return PendingIntent.getActivity(context,
                 0,
-                chooserIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                notificationIntent,
+                uniqueInt);
     }
 
     public static PendingIntent getPendingGoogleIntent(LogEntry logEntry, Context context) {
@@ -36,11 +36,24 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static Intent getChooserIntent(LogEntry logEntry, Context context) {
-        Intent shareIntent = new Intent();
+    public static PendingIntent getPendingShareIntent(LogEntry logEntry, Context context) {
+        Intent chooserIntent = getChooserIntent(logEntry, context);
+
+        return PendingIntent.getActivity(context,
+                0,
+                chooserIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    private static Intent getChooserIntent(LogEntry logEntry, Context context) {
+        Intent shareIntent = getIntentShareExtras(logEntry, new Intent());
+        return Intent.createChooser(shareIntent, context.getResources().getText(R.string.app_name));
+    }
+
+    private static Intent getIntentShareExtras(LogEntry logEntry, Intent shareIntent) {
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent());
         shareIntent.setType("text/plain");
-        return Intent.createChooser(shareIntent, context.getResources().getText(R.string.app_name));
+        return shareIntent;
     }
 }

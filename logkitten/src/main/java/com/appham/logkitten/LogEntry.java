@@ -6,7 +6,11 @@ public class LogEntry {
     private String level;
     private String content;
 
-    LogEntry(String time, String pid, String level, String content) {
+    public LogEntry() {
+        //empty
+    }
+
+    public LogEntry(String time, String pid, String level, String content) {
         this.setTime(time);
         this.setPid(pid);
         this.setLevel(level);
