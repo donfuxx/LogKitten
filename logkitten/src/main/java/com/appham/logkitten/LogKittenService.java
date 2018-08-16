@@ -40,6 +40,7 @@ public class LogKittenService extends Service {
                 Process logcat;
                 BufferedReader br = null;
                 try {
+                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
                     logcat = Runtime.getRuntime().exec(new String[]{"logcat", "*:W"});
                     br = new BufferedReader(new InputStreamReader(logcat.getInputStream()),4*1024);
                     String line;
