@@ -3,19 +3,19 @@
     package="com.appham.logkitten">
 
     <application
+        android:name=".LogKittenApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name=".LogKittenApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
             android:name=".LogDetailActivity"
+            android:excludeFromRecents="true"
             android:label="Log Kitten Details"
             android:launchMode="singleTask"
-            android:taskAffinity="com.appham.logkitten"
-            android:excludeFromRecents="true">
+            android:taskAffinity="com.appham.logkitten">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -25,9 +25,10 @@
 
         <activity
             android:name=".LaunchServiceActivity"
+            android:excludeFromRecents="true"
             android:label="@string/lib_name"
-            android:taskAffinity="com.appham.logkitten.service"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:taskAffinity="com.appham.logkitten.service">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
