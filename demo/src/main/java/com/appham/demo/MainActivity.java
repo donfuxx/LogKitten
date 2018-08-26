@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +16,15 @@ public class MainActivity extends AppCompatActivity {
         Log.w("Demo", "Test Warning Demo");
 
         new Handler().postDelayed(() -> {
-            throw new RuntimeException("Test Error Demo");
+            try {
+                throw new RuntimeException("Test Exception Demo");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }, 2000);
+    }
+
+    public void crash(View view) {
+        throw new RuntimeException("Test Crash");
     }
 }
