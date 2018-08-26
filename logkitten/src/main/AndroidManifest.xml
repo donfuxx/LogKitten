@@ -26,7 +26,7 @@
         <activity
             android:name=".LaunchServiceActivity"
             android:excludeFromRecents="true"
-            android:label="@string/lib_name"
+            android:label="@string/logkitten_lib_name"
             android:launchMode="singleTask"
             android:taskAffinity="com.appham.logkitten.service">
             <intent-filter>

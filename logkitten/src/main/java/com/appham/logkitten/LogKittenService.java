@@ -40,7 +40,7 @@ public class LogKittenService extends Service {
             stopLogging();
             stopSelf();
             Toast.makeText(getApplicationContext(),
-                    R.string.stopped_service, Toast.LENGTH_LONG).show();
+                    R.string.logkitten_stopped_service, Toast.LENGTH_LONG).show();
             return START_STICKY;
         }
 
@@ -113,7 +113,7 @@ public class LogKittenService extends Service {
         startLogging();
 
         Toast.makeText(getApplicationContext(),
-                R.string.started_service, Toast.LENGTH_LONG).show();
+                R.string.logkitten_started_service, Toast.LENGTH_LONG).show();
 
         return START_STICKY;
     }

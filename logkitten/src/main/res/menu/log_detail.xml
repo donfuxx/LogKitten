@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/action_share"
-        android:icon="@drawable/ic_share_white_48dp"
-        android:title="@string/action_share"
+        android:icon="@drawable/logkitten_ic_share_white_48dp"
+        android:title="@string/logkitten_action_share"
         app:showAsAction="ifRoom" />
 
 </menu>
