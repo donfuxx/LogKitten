@@ -65,7 +65,7 @@ public class IntentFactory {
 
     public static Intent getChooserIntent(LogEntry logEntry, Context context) {
         Intent shareIntent = getIntentShareExtras(logEntry, new Intent());
-        return Intent.createChooser(shareIntent, context.getResources().getText(R.string.app_name));
+        return Intent.createChooser(shareIntent, context.getResources().getText(R.string.lib_name));
     }
 
     private static Intent getIntentShareExtras(LogEntry logEntry, Intent shareIntent) {

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.appham.logkitten.notifications.NotificationFactory;
 
@@ -38,6 +39,8 @@ public class LogKittenService extends Service {
         if (STOP_SERVICE.equals(intent.getAction())) {
             stopLogging();
             stopSelf();
+            Toast.makeText(getApplicationContext(),
+                    R.string.stopped_service, Toast.LENGTH_LONG).show();
             return START_STICKY;
         }
 
@@ -108,6 +111,9 @@ public class LogKittenService extends Service {
             }
         });
         startLogging();
+
+        Toast.makeText(getApplicationContext(),
+                R.string.started_service, Toast.LENGTH_LONG).show();
 
         return START_STICKY;
     }
