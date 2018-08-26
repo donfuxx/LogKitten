@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.appham.logkitten.notifications.IntentFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class LogDetailActivity extends AppCompatActivity {
 
     private TextView txtLogDetail;
@@ -58,6 +62,25 @@ public class LogDetailActivity extends AppCompatActivity {
                     txtLogDetail.setMovementMethod(new ScrollingMovementMethod());
                 }
             }
+        } else {
+            dumpLogcat();
+        }
+    }
+
+    private void dumpLogcat() {
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line).append("\n");
+            }
+            txtLogDetail.setText(log.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -18,6 +18,11 @@ public class IntentFactory {
         Intent notificationIntent = getIntentShareExtras(logEntry,
                 new Intent(context, LogDetailActivity.class));
 
+        return getPendingLogsIntent(context, notificationIntent);
+    }
+
+
+    public static PendingIntent getPendingLogsIntent(Context context, Intent notificationIntent) {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

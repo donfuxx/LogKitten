@@ -5,12 +5,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.appham.logkitten.LogDetailActivity;
 import com.appham.logkitten.LogEntry;
 import com.appham.logkitten.R;
 
@@ -19,6 +21,8 @@ public class NotificationFactory {
     public static Notification createServiceNotification(Context context) {
         PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(new LogEntry(), context);
         PendingIntent pendingStopIntent = IntentFactory.getPendingStopIntent(context);
+        PendingIntent pendingLogsIntent = IntentFactory.getPendingLogsIntent(context,
+                new Intent(context, LogDetailActivity.class));
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.ic_kitten_notification)
@@ -30,6 +34,7 @@ public class NotificationFactory {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setGroup(LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .addAction(R.drawable.ic_kitten_notification, "Stop", pendingStopIntent)
+                .addAction(R.drawable.ic_kitten_notification, "Show Logs", pendingLogsIntent)
                 .setContentIntent(pendingDetailsIntent);
 
         Notification notification = builder.build();
