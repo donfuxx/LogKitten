@@ -58,7 +58,7 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    private static Intent getChooserIntent(LogEntry logEntry, Context context) {
+    public static Intent getChooserIntent(LogEntry logEntry, Context context) {
         Intent shareIntent = getIntentShareExtras(logEntry, new Intent());
         return Intent.createChooser(shareIntent, context.getResources().getText(R.string.app_name));
     }

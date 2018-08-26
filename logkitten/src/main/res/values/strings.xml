@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Log Kitten</string>
+    <string name="action_share">Share</string>
 </resources>
