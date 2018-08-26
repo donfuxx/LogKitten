@@ -7,7 +7,10 @@ import android.net.Uri;
 
 import com.appham.logkitten.LogDetailActivity;
 import com.appham.logkitten.LogEntry;
+import com.appham.logkitten.LogKittenService;
 import com.appham.logkitten.R;
+
+import static com.appham.logkitten.LogKittenService.STOP_SERVICE;
 
 public class IntentFactory {
 
@@ -42,6 +45,16 @@ public class IntentFactory {
         return PendingIntent.getActivity(context,
                 0,
                 chooserIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    public static PendingIntent getPendingStopIntent(Context context) {
+        Intent stopIntent = new Intent(context, LogKittenService.class);
+        stopIntent.setAction(STOP_SERVICE);
+
+        return PendingIntent.getService(context,
+                0,
+                stopIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

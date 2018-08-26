@@ -18,11 +18,13 @@ import java.util.regex.Pattern;
 
 public class LogKittenService extends Service {
 
+    public static final String STOP_SERVICE = "STOP_SERVICE";
     private static final int NOTIFICATION_ID = 7777777;
     private Pattern timePattern = Pattern.compile("^\\d\\d-\\d\\d\\s\\d\\d:\\d\\d:\\d\\d.\\d\\d\\d");
     private Pattern pidPattern = Pattern.compile("\\s+\\d{3,6}\\s+\\d{3,6}\\s+");
     private Pattern levelPattern = Pattern.compile("\\s+[VDIWEA]\\s+");
     private SoundMachine soundMachine;
+    private Thread logThread;
 
     @Override
     public void onCreate() {
@@ -32,9 +34,16 @@ public class LogKittenService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if (STOP_SERVICE.equals(intent.getAction())) {
+            stopLogging();
+            stopSelf();
+            return START_STICKY;
+        }
+
         startForeground(NOTIFICATION_ID, NotificationFactory.createServiceNotification(this));
 
-        new Thread(new Runnable() {
+        logThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 Process logcat;
@@ -81,7 +90,7 @@ public class LogKittenService extends Service {
                         }
 
 
-                    } while (line != null);
+                    } while (!Thread.interrupted() && line != null);
 
                     Log.d(this.getClass().getName(), "end reading lines");
 
@@ -97,10 +106,10 @@ public class LogKittenService extends Service {
                     }
                 }
             }
-        }).start();
+        });
+        startLogging();
 
         return START_STICKY;
-
     }
 
     @Nullable
@@ -114,6 +123,18 @@ public class LogKittenService extends Service {
         super.onDestroy();
         soundMachine.release();
         soundMachine = null;
+    }
+
+    public void startLogging() {
+        if (logThread != null) {
+            logThread.start();
+        }
+    }
+
+    public void stopLogging() {
+        if (logThread != null) {
+            logThread.interrupt();
+        }
     }
 
     @NonNull

@@ -17,7 +17,8 @@ import com.appham.logkitten.R;
 public class NotificationFactory {
 
     public static Notification createServiceNotification(Context context) {
-        PendingIntent pendingIntent = IntentFactory.getPendingDetailsIntent(new LogEntry(), context);
+        PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(new LogEntry(), context);
+        PendingIntent pendingStopIntent = IntentFactory.getPendingStopIntent(context);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.ic_kitten_notification)
@@ -28,9 +29,8 @@ public class NotificationFactory {
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setGroup(LogKittenChannel.LOG_KITTEN_SERVICE.name())
-                .addAction(R.drawable.ic_kitten_notification, "Stop", null)
-                .addAction(R.drawable.ic_kitten_notification, "Clear Logcat", null)
-                .setContentIntent(pendingIntent);
+                .addAction(R.drawable.ic_kitten_notification, "Stop", pendingStopIntent)
+                .setContentIntent(pendingDetailsIntent);
 
         Notification notification = builder.build();
         createNotificationChannel(LogKittenChannel.LOG_KITTEN_SERVICE, context);
