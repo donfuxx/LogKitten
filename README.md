@@ -8,3 +8,22 @@ LogKitten is an **Android library module** that can be added to your Android pro
  - It is recommended to include LogKitten **only in debug builds**, but not in your production release build. LogKitten is usefull for developers and testers, but pretty useless for real users of you app.
 
 ![logkitten_ic_launcher-web](https://user-images.githubusercontent.com/8261416/44672957-04be7200-aa22-11e8-987d-bdc8c51d3f29.png)
+
+## Setup Guide
+
+### Step 1. Add the JitPack repository to your build file
+Add it in your root build.gradle at the end of repositories:
+
+    	allprojects {
+    		repositories {
+    			...
+    			maven { url 'https://jitpack.io' }
+    		}
+    	}
+
+### Step 2. Add the debug dependency
+Add it in your app module gradle dependencies. It is recommended to use `debugImplementation`
+
+    	dependencies {
+    	        debugImplementation 'com.github.donfuxx:LogKitten:v1.1.0'
+    	}
