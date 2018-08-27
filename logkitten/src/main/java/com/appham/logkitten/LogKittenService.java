@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -127,20 +128,20 @@ public class LogKittenService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        stopLogging();
         if (soundMachine != null) {
             soundMachine.release();
             soundMachine = null;
         }
-        stopLogging();
     }
 
     public void startLogging() {
+        if (soundMachine == null) {
+            soundMachine = new SoundMachine(this);
+        }
         if (logThread != null) {
             logThread.start();
-            Log.d(this.getClass().getName(), getString(R.string.logkitten_started_service));
-            Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
-            Toast.makeText(getApplicationContext(),
-                    R.string.logkitten_started_service, Toast.LENGTH_LONG).show();
+            toastEvent(R.string.logkitten_started_service);
         }
     }
 
@@ -148,11 +149,14 @@ public class LogKittenService extends Service {
         if (logThread != null) {
             logThread.interrupt();
             logThread = null;
-            Log.d(this.getClass().getName(), getString(R.string.logkitten_stopped_service));
-            Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
-            Toast.makeText(getApplicationContext(),
-                    R.string.logkitten_stopped_service, Toast.LENGTH_LONG).show();
+            toastEvent(R.string.logkitten_stopped_service);
         }
+    }
+
+    private void toastEvent(@StringRes int stringRes) {
+        Log.d(this.getClass().getName(), getString(stringRes));
+        Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
+        Toast.makeText(getApplicationContext(), stringRes, Toast.LENGTH_LONG).show();
     }
 
     @NonNull
