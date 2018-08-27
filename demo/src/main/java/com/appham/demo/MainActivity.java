@@ -25,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void crash(View view) {
-        throw new RuntimeException("Test Crash");
+        throw new RuntimeException("Test Crash Demo");
     }
 }
