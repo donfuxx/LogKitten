@@ -72,6 +72,10 @@ public class LogKittenService extends Service {
                             continue;
                         }
 
+                        if (Thread.interrupted()) {
+                            break;
+                        }
+
                         LogEntry logEntry = buildLogEntry(line);
 
                         if ((!TextUtils.isEmpty(logEntry.getPid()) && !TextUtils.isEmpty(prevEntry.getPid())) &&
