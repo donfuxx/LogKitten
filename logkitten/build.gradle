@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.appham.logkitten'
+group='com.appham'
 
 android {
     compileSdkVersion 27
