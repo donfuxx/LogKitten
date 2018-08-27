@@ -7,15 +7,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/logkitten_ic_launcher"
         android:roundIcon="@mipmap/logkitten_ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
 
         <activity
             android:name=".LogDetailActivity"
             android:excludeFromRecents="true"
             android:label="Log Kitten Details"
             android:launchMode="singleTask"
-            android:taskAffinity="com.appham.logkitten">
+            android:taskAffinity="com.appham.logkitten"
+            android:theme="@style/LogKittenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
