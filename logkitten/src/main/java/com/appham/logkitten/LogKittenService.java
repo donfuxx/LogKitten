@@ -43,6 +43,7 @@ public class LogKittenService extends Service {
             stopSelf();
             return START_STICKY;
         } else if (logThread != null) {
+            toastEvent(R.string.logkitten_already_started_service);
             return START_STICKY;
         }
 
