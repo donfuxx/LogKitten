@@ -6,8 +6,8 @@
     <string name="logkitten_already_started_service">■ LogKitten Service was already started! ■</string>
     <string name="logkitten_stopped_service">■ Stopped LogKitten Service! ■</string>
     <string name="logkitten_powered_by">\n»\n\n
-        ═══════════════════════════════ \n
-          Logcat powered by LogKitten®  \n
-        ═══════════════════════════════ \n\n«\n
+        ════════════════════════════════ \n
+          Logcat powered by LogKitten®   \n
+        ════════════════════════════════ \n\n«\n
     </string>
 </resources>
