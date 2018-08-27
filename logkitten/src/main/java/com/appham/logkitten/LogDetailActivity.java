@@ -24,6 +24,7 @@ public class LogDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logkitten_log_detail);
         txtLogDetail = findViewById(R.id.txtLogDetail);
+        txtLogDetail.setMovementMethod(new ScrollingMovementMethod());
         setTextFromIntent();
     }
 
@@ -59,7 +60,6 @@ public class LogDetailActivity extends AppCompatActivity {
                 String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
                 if (sharedText != null) {
                     txtLogDetail.setText(sharedText);
-                    txtLogDetail.setMovementMethod(new ScrollingMovementMethod());
                 }
             }
         } else {
