@@ -15,7 +15,7 @@ public class SoundMachine {
 
     SoundMachine(Context context) {
         sounds = createSoundPool();
-        meow = sounds.load(context, R.raw.meow, 1);
+        meow = sounds.load(context, R.raw.logkitten_meow, 1);
     }
 
     public void meow() {
