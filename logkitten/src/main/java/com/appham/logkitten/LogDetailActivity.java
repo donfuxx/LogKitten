@@ -78,7 +78,7 @@ public class LogDetailActivity extends AppCompatActivity {
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line).append("\n");
             }
-            txtLogDetail.setText(log.toString());
+            txtLogDetail.setText(log.toString() + getString(R.string.logkitten_powered_by));
         } catch (IOException e) {
             e.printStackTrace();
         }

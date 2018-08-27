@@ -30,7 +30,7 @@ public class LogKittenApplication extends Application {
 
             StringWriter stringWriter = new StringWriter();
             paramThrowable.printStackTrace(new PrintWriter(stringWriter));
-            String exceptionStr = stringWriter.toString();
+            String exceptionStr = stringWriter.toString() + getString(R.string.logkitten_powered_by);
 
             LogEntry logEntry = new LogEntry("CRASH: " + new Date().toString(),
                     Thread.currentThread().getId() + "",
