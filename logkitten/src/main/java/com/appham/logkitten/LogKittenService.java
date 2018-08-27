@@ -36,14 +36,16 @@ public class LogKittenService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        // stop service
         if (STOP_SERVICE.equals(intent.getAction())) {
             stopLogging();
             stopSelf();
-            Toast.makeText(getApplicationContext(),
-                    R.string.logkitten_stopped_service, Toast.LENGTH_LONG).show();
+            return START_STICKY;
+        } else if (logThread != null) {
             return START_STICKY;
         }
 
+        // start service
         startForeground(NOTIFICATION_ID, NotificationFactory.createServiceNotification(this));
 
         logThread = new Thread(new Runnable() {
@@ -52,7 +54,7 @@ public class LogKittenService extends Service {
                 Process logcat;
                 BufferedReader br = null;
                 try {
-                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
+//                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
                     logcat = Runtime.getRuntime().exec(new String[]{"logcat", "*:W"});
                     br = new BufferedReader(new InputStreamReader(logcat.getInputStream()),4*1024);
                     String line;
@@ -113,9 +115,6 @@ public class LogKittenService extends Service {
         });
         startLogging();
 
-        Toast.makeText(getApplicationContext(),
-                R.string.logkitten_started_service, Toast.LENGTH_LONG).show();
-
         return START_STICKY;
     }
 
@@ -128,19 +127,31 @@ public class LogKittenService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        soundMachine.release();
-        soundMachine = null;
+        if (soundMachine != null) {
+            soundMachine.release();
+            soundMachine = null;
+        }
+        stopLogging();
     }
 
     public void startLogging() {
         if (logThread != null) {
             logThread.start();
+            Log.d(this.getClass().getName(), getString(R.string.logkitten_started_service));
+            Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
+            Toast.makeText(getApplicationContext(),
+                    R.string.logkitten_started_service, Toast.LENGTH_LONG).show();
         }
     }
 
     public void stopLogging() {
         if (logThread != null) {
             logThread.interrupt();
+            logThread = null;
+            Log.d(this.getClass().getName(), getString(R.string.logkitten_stopped_service));
+            Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
+            Toast.makeText(getApplicationContext(),
+                    R.string.logkitten_stopped_service, Toast.LENGTH_LONG).show();
         }
     }
 
