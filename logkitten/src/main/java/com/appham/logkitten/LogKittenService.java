@@ -3,6 +3,7 @@ package com.appham.logkitten;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -15,6 +16,9 @@ import com.appham.logkitten.notifications.NotificationFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,11 +26,13 @@ public class LogKittenService extends Service {
 
     public static final String STOP_SERVICE = "STOP_SERVICE";
     private static final int NOTIFICATION_ID = 7777777;
+    private final int CRASH_ID = 41;
     private Pattern timePattern = Pattern.compile("^\\d\\d-\\d\\d\\s\\d\\d:\\d\\d:\\d\\d.\\d\\d\\d");
     private Pattern pidPattern = Pattern.compile("\\s+\\d{3,6}\\s+\\d{3,6}\\s+");
     private Pattern levelPattern = Pattern.compile("\\s+[VDIWEA]\\s+");
     private SoundMachine soundMachine;
     private Thread logThread;
+    private Thread.UncaughtExceptionHandler defaultExceptionHandler;
 
     @Override
     public void onCreate() {
@@ -49,6 +55,8 @@ public class LogKittenService extends Service {
 
         // start service
         startForeground(NOTIFICATION_ID, NotificationFactory.createServiceNotification(this));
+
+        setCrashHandler();
 
         logThread = new Thread(new Runnable() {
             @Override
@@ -138,6 +146,7 @@ public class LogKittenService extends Service {
             soundMachine.release();
             soundMachine = null;
         }
+        Thread.setDefaultUncaughtExceptionHandler(defaultExceptionHandler);
     }
 
     public void startLogging() {
@@ -156,6 +165,31 @@ public class LogKittenService extends Service {
             logThread = null;
             toastEvent(R.string.logkitten_stopped_service);
         }
+    }
+
+    private void setCrashHandler() {
+        if (defaultExceptionHandler == null) {
+            defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+
+            Thread.setDefaultUncaughtExceptionHandler((paramThread, paramThrowable) -> {
+
+                StringWriter stringWriter = new StringWriter();
+                paramThrowable.printStackTrace(new PrintWriter(stringWriter));
+                String exceptionStr = stringWriter.toString() + getString(R.string.logkitten_powered_by);
+
+                LogEntry logEntry = new LogEntry("CRASH: " + new Date().toString(),
+                        Thread.currentThread().getId() + "",
+                        "E",
+                        exceptionStr);
+
+                soundMachine.meow();
+                NotificationFactory.newNotification(CRASH_ID, logEntry, this);
+
+                SystemClock.sleep(1000);
+                defaultExceptionHandler.uncaughtException(paramThread, paramThrowable);
+            });
+        }
+
     }
 
     private void toastEvent(@StringRes int stringRes) {
