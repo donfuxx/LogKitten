@@ -103,7 +103,7 @@ public class LogKittenService extends Service {
 
                     } while (!Thread.interrupted() && line != null);
 
-                    Log.d(this.getClass().getName(), "end reading lines");
+                    Log.d(this.getClass().getName(), "end reading logcat lines");
 
                 } catch (Exception e) {
                     e.printStackTrace();
