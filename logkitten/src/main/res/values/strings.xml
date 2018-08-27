@@ -2,8 +2,8 @@
     <public />
     <string name="logkitten_lib_name">Log Kitten</string>
     <string name="logkitten_action_share">Share</string>
-    <string name="logkitten_started_service">Started LogKitten Service!</string>
-    <string name="logkitten_stopped_service">Stopped LogKitten Service!</string>
+    <string name="logkitten_started_service">■ Started LogKitten Service! ■</string>
+    <string name="logkitten_stopped_service">■ Stopped LogKitten Service! ■</string>
     <string name="logkitten_powered_by">\n»\n\n
         ═══════════════════════════════ \n
           Logcat powered by LogKitten®  \n
