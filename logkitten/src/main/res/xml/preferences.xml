@@ -4,7 +4,9 @@
     <ListPreference
         android:key="logkitten_pref_loglevel_key"
         android:title="@string/logkitten_pref_loglevel_title"
+        android:dialogTitle="@string/logkitten_pref_loglevel_dialogTitle"
         android:entries="@array/logkitten_pref_loglevel_entries"
-        android:entryValues="@array/logkitten_pref_loglevel_values" />
+        android:entryValues="@array/logkitten_pref_loglevel_values"
+        android:defaultValue="@string/logkitten_pref_loglevel_default" />
 
 </PreferenceScreen>
