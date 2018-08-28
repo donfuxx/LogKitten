@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="logkitten_pref_loglevel_key"
+        android:title="@string/logkitten_pref_loglevel_title"
+        android:entries="@array/logkitten_pref_loglevel_entries"
+        android:entryValues="@array/logkitten_pref_loglevel_values" />
+
+</PreferenceScreen>

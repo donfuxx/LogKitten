@@ -7,4 +7,10 @@
         android:title="@string/logkitten_action_share"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/logkitten_ic_settings_black_48dp"
+        android:title="@string/logkitten_action_settings"
+        app:showAsAction="ifRoom" />
+
 </menu>

@@ -1,1 +1,1 @@
-include ':logkitten'
+include ':logkitten', ':demo'

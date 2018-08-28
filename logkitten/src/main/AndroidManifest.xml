@@ -35,6 +35,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SettingsActivity"
+            android:icon="@mipmap/logkitten_ic_launcher"
+            android:label="@string/logkitten_action_settings"
+            android:roundIcon="@mipmap/logkitten_ic_launcher_round"
+            android:theme="@style/LogKittenTheme" />
+
         <service android:name=".LogKittenService" />
 
     </application>

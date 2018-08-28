@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="logkitten_pref_loglevel_entries">
+        <item>Warning or higher</item>
+        <item>Error or higher</item>
+        <item>Only Crashes</item>
+    </string-array>
+
+    <string-array name="logkitten_pref_loglevel_values">
+        <item>*:W</item>
+        <item>*:E</item>
+        <item>-d</item>
+    </string-array>
+</resources>

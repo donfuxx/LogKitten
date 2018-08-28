@@ -1,11 +1,13 @@
 <resources>
     <public />
     <string name="logkitten_lib_name">Log Kitten</string>
+    <string name="logkitten_action_settings">Settings</string>
     <string name="logkitten_action_share">Share</string>
     <string name="logkitten_log_details">Log Kitten Details</string>
     <string name="logkitten_started_service">■ Started LogKitten Service! ■</string>
     <string name="logkitten_already_started_service">■ LogKitten Service was already started! ■</string>
     <string name="logkitten_stopped_service">■ Stopped LogKitten Service! ■</string>
+    <string name="logkitten_pref_loglevel_title">Select the minimum log level severity to trigger a notification</string>
     <string name="logkitten_powered_by">\n»\n\n
         ════════════════════════════════ \n
           Logcat powered by LogKitten®   \n

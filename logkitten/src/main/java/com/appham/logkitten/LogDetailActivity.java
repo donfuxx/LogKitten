@@ -40,6 +40,9 @@ public class LogDetailActivity extends AppCompatActivity {
         if (id == R.id.action_share) {
             shareLogText();
             return true;
+        } else if (id == R.id.action_settings) {
+            startActivity(SettingsActivity.getLaunchIntent(this));
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
