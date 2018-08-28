@@ -19,7 +19,6 @@ import com.appham.logkitten.R;
 public class NotificationFactory {
 
     public static Notification createServiceNotification(Context context) {
-        PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(new LogEntry(), context);
         PendingIntent pendingStopIntent = IntentFactory.getPendingStopIntent(context);
         PendingIntent pendingLogsIntent = IntentFactory.getPendingLogsIntent(context,
                 new Intent(context, LogDetailActivity.class));
@@ -35,7 +34,7 @@ public class NotificationFactory {
                 .setGroup(LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .addAction(R.drawable.logkitten_ic_notification, "Stop", pendingStopIntent)
                 .addAction(R.drawable.logkitten_ic_notification, "Show Logs", pendingLogsIntent)
-                .setContentIntent(pendingDetailsIntent);
+                .setContentIntent(pendingLogsIntent);
 
         Notification notification = builder.build();
         createNotificationChannel(LogKittenChannel.LOG_KITTEN_SERVICE, context);
