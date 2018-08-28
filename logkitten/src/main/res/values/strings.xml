@@ -8,8 +8,11 @@
     <string name="logkitten_already_started_service">■ LogKitten Service was already started! ■</string>
     <string name="logkitten_stopped_service">■ Stopped LogKitten Service! ■</string>
     <string name="logkitten_pref_loglevel_title">Minimum notification log level</string>
-    <string name="logkitten_pref_loglevel_dialogTitle">Select the minimum log level severity to trigger a notification</string>
+    <string name="logkitten_pref_loglevel_dialogTitle">Select min log level</string>
+    <string name="logkitten_pref_loglevel_summary">Select the minimum log level severity to trigger a notification</string>
+    <string name="logkitten_pref_loglevel_key" translatable="false">logkitten_pref_loglevel_key</string>
     <string name="logkitten_pref_loglevel_default" translatable="false">*:E</string>
+    <string name="logkitten_prefs" translatable="false">logkitten_prefs</string>
     <string name="logkitten_powered_by">\n»\n\n
         ════════════════════════════════ \n
           Logcat powered by LogKitten®   \n

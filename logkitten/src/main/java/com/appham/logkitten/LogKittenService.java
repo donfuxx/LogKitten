@@ -2,8 +2,10 @@ package com.appham.logkitten;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -33,11 +35,26 @@ public class LogKittenService extends Service {
     private SoundMachine soundMachine;
     private Thread logThread;
     private Thread.UncaughtExceptionHandler defaultExceptionHandler;
+    private SharedPreferences prefs;
+    private String loglevel;
+    private SharedPreferences.OnSharedPreferenceChangeListener prefsListener;
 
     @Override
     public void onCreate() {
         super.onCreate();
         soundMachine = new SoundMachine(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefsListener = (sharedPreferences, key) -> {
+            if (getString(R.string.logkitten_pref_loglevel_key).equals(key)) {
+
+                // set new log level and restart service
+                loglevel = sharedPreferences.getString(getString(R.string.logkitten_pref_loglevel_key),
+                        getString(R.string.logkitten_pref_loglevel_default));
+                stopLogging();
+                onStartCommand(new Intent(), 0, 1);
+            }
+        };
+        prefs.registerOnSharedPreferenceChangeListener(prefsListener);
     }
 
     @Override
@@ -56,6 +73,9 @@ public class LogKittenService extends Service {
         // start service
         startForeground(NOTIFICATION_ID, NotificationFactory.createServiceNotification(this));
 
+        loglevel = prefs.getString(getString(R.string.logkitten_pref_loglevel_key),
+                getString(R.string.logkitten_pref_loglevel_default));
+
         setCrashHandler();
 
         logThread = new Thread(new Runnable() {
@@ -65,7 +85,7 @@ public class LogKittenService extends Service {
                 BufferedReader br = null;
                 try {
 //                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
-                    logcat = Runtime.getRuntime().exec(new String[]{"logcat", "*:W"});
+                    logcat = Runtime.getRuntime().exec(new String[]{"logcat", loglevel});
                     br = new BufferedReader(new InputStreamReader(logcat.getInputStream()),4*1024);
                     String line;
                     LogEntry prevEntry = new LogEntry("", "", "", "");
