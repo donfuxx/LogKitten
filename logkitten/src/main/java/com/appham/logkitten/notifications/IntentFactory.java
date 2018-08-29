@@ -16,7 +16,7 @@ public class IntentFactory {
 
     public static PendingIntent getPendingDetailsIntent(LogEntry logEntry, Context context) {
         Intent notificationIntent = getIntentShareExtras(logEntry,
-                new Intent(context, LogDetailActivity.class));
+                new Intent(context, LogDetailActivity.class), context);
 
         return getPendingLogsIntent(context, notificationIntent);
     }
@@ -64,13 +64,14 @@ public class IntentFactory {
     }
 
     public static Intent getChooserIntent(LogEntry logEntry, Context context) {
-        Intent shareIntent = getIntentShareExtras(logEntry, new Intent());
+        Intent shareIntent = getIntentShareExtras(logEntry, new Intent(), context);
         return Intent.createChooser(shareIntent, context.getResources().getText(R.string.logkitten_lib_name));
     }
 
-    private static Intent getIntentShareExtras(LogEntry logEntry, Intent shareIntent) {
+    private static Intent getIntentShareExtras(LogEntry logEntry, Intent shareIntent, Context context) {
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent() +
+                context.getString(R.string.logkitten_powered_by));
         shareIntent.setType("text/plain");
         return shareIntent;
     }
