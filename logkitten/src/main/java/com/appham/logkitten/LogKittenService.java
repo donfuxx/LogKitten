@@ -31,7 +31,7 @@ public class LogKittenService extends Service {
     private final int CRASH_ID = 41;
     private Pattern timePattern = Pattern.compile("^\\d\\d-\\d\\d\\s\\d\\d:\\d\\d:\\d\\d.\\d\\d\\d");
     private Pattern pidPattern = Pattern.compile("\\s+\\d{3,6}\\s+\\d{3,6}\\s+");
-    private Pattern levelPattern = Pattern.compile("\\s+[VDIWEA]\\s+");
+    private Pattern levelPattern = Pattern.compile("\\s+[VDIWEAC]\\s+");
     private SoundMachine soundMachine;
     private Thread logThread;
     private Thread.UncaughtExceptionHandler defaultExceptionHandler;
@@ -199,7 +199,7 @@ public class LogKittenService extends Service {
 
                 LogEntry logEntry = new LogEntry("CRASH: " + new Date().toString(),
                         Thread.currentThread().getId() + "",
-                        "E",
+                        "C",
                         exceptionStr);
 
                 soundMachine.meow();

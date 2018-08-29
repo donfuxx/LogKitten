@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
@@ -57,13 +59,15 @@ public class NotificationFactory {
     }
 
     public static void newNotification(int id, LogEntry logEntry, Context context) {
-        if (!logEntry.getLevel().matches("E|W")) return;
+        if (!logEntry.getLevel().matches("[EWC]")) return;
 
         PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(logEntry, context);
         PendingIntent pendingShareIntent = IntentFactory.getPendingShareIntent(logEntry, context);
         PendingIntent pendingGoogleIntent = IntentFactory.getPendingGoogleIntent(logEntry, context);
 
-        boolean isError = "E".equals(logEntry.getLevel());
+        boolean isError = logEntry.getLevel().matches("[EC]");
+
+        @ColorRes int colorRes = getColorRes(logEntry.getLevel());
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,
                 LogKittenChannel.LOG_KITTEN_ENTRIES.name())
@@ -71,7 +75,7 @@ public class NotificationFactory {
                 .setContentTitle(logEntry.getTitle())
                 .setContentText(logEntry.getContent())
                 .setTicker("Log Kitten TICKER")
-                .setColor(isError ? Color.RED : ContextCompat.getColor(context, R.color.logkitten_orange))
+                .setColor(ContextCompat.getColor(context, colorRes))
                 .setPriority(isError ? NotificationCompat.PRIORITY_HIGH : NotificationCompat.PRIORITY_DEFAULT)
                 .setNumber(id)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(logEntry.getContent()))
@@ -86,6 +90,16 @@ public class NotificationFactory {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(id, builder.build());
+    }
+
+    private static @ColorRes int getColorRes(@NonNull String level) {
+        if (level.equals("C")) {
+            return R.color.logkitten_magenta;
+        } else if (level.equals("E")) {
+            return R.color.logkitten_red;
+        } else {
+            return R.color.logkitten_orange;
+        }
     }
 
 }
