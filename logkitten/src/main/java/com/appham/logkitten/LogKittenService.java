@@ -191,7 +191,7 @@ public class LogKittenService extends Service {
                 paramThrowable.printStackTrace(new PrintWriter(stringWriter));
                 String exceptionStr = stringWriter.toString() + getString(R.string.logkitten_powered_by);
 
-                LogEntry logEntry = new LogEntry("CRASH: " + new Date().toString(),
+                LogEntry logEntry = new LogEntry(" ☠ CRASH ☠ : " + new Date().toString(),
                         Thread.currentThread().getId() + "",
                         "C",
                         exceptionStr);
