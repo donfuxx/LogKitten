@@ -27,4 +27,15 @@ public class LogEntryFactoryTest {
         Assert.assertEquals("W", logEntry.getLevel());
         Assert.assertEquals("System.err: java.lang.RuntimeException: Test Exception Demo", logEntry.getContent());
     }
+
+    @Test
+    public void testBuildLogEntryErrorValid() {
+        String logline = "08-29 20:23:51.574  3397  3397 E AndroidRuntime: java.lang.IllegalStateException: Could not execute method for android:onClick";
+        LogEntry logEntry = LogEntryFactory.buildLogEntry(logline);
+
+        Assert.assertEquals("08-29 20:23:51.574", logEntry.getTime());
+        Assert.assertEquals("3397  3397", logEntry.getPid());
+        Assert.assertEquals("E", logEntry.getLevel());
+        Assert.assertEquals("AndroidRuntime: java.lang.IllegalStateException: Could not execute method for android:onClick", logEntry.getContent());
+    }
 }
