@@ -103,7 +103,7 @@ public class LogKittenService extends Service {
 
                         if ((!TextUtils.isEmpty(logEntry.getPid()) && !TextUtils.isEmpty(prevEntry.getPid())) &&
                                 !prevEntry.getPidLevel().equals(logEntry.getPidLevel())) {
-                            prevEntry.setContent(prevEntry.getContent() + getString(R.string.logkitten_powered_by));
+                            prevEntry.setContent(prevEntry.getContent());
                             NotificationFactory.newNotification(Integer.parseInt(
                                     prevEntry.getPid().split("\\D")[0]), prevEntry, LogKittenService.this);
                             prevEntry = logEntry;
