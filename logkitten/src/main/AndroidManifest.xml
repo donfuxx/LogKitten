@@ -24,7 +24,7 @@
             android:name="com.appham.logkitten.LaunchServiceActivity"
             android:excludeFromRecents="true"
             android:icon="@mipmap/logkitten_ic_launcher"
-            android:label="@string/logkitten_lib_name"
+            android:label="@string/logkitten_app_name"
             android:launchMode="singleTask"
             android:roundIcon="@mipmap/logkitten_ic_launcher_round"
             android:taskAffinity="com.appham.logkitten.service"
