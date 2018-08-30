@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <public />
     <string name="logkitten_app_name">@string/app_name</string>
     <string name="logkitten_lib_name">Log Kitten</string>
     <string name="logkitten_action_settings">Settings</string>
