@@ -1,5 +1,4 @@
 # LogKitten
-----
 
 LogKitten is an **Android library module** that can be added to your Android project for example as a `debugImplementation` to make inspecting the logcat on the device easier in the following ways:
  - The LogKitten Service will be **started by clicking the "LogKitten" launcher icon** and it will monitor your app's logcat for Error and Warning level logs and will show them as notifications.
@@ -12,7 +11,6 @@ LogKitten is an **Android library module** that can be added to your Android pro
 ![logkitten_ic_launcher-web](https://user-images.githubusercontent.com/8261416/44672957-04be7200-aa22-11e8-987d-bdc8c51d3f29.png)
 
 ## Setup Guide
-----
 
 ### Step 1. Add the JitPack repository to your build file
 Add it in your root build.gradle at the end of repositories:
