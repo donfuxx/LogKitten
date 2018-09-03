@@ -22,7 +22,7 @@ public class LogDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logkitten_log_detail);
+        setContentView(R.layout.logkitten_activity_log_detail);
         txtLogDetail = findViewById(R.id.txtLogDetail);
         txtLogDetail.setMovementMethod(new ScrollingMovementMethod());
         setTextFromIntent();
