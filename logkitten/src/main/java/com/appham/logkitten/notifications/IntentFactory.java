@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.appham.logkitten.LogDetailActivity;
 import com.appham.logkitten.LogEntry;
@@ -35,13 +36,19 @@ public class IntentFactory {
     }
 
     public static PendingIntent getPendingGoogleIntent(LogEntry logEntry, Context context) {
-        Intent googleIntent = new Intent(Intent.ACTION_VIEW);
-        googleIntent.setData(Uri.parse("https://www.google.com/search?q=" + logEntry.getContent()));
+        Intent googleIntent = getBrowserIntent("https://www.google.com/search?q=" + logEntry.getContent());
 
         return PendingIntent.getActivity(context,
                 0,
                 googleIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    @NonNull
+    public static Intent getBrowserIntent(@NonNull String url) {
+        Intent googleIntent = new Intent(Intent.ACTION_VIEW);
+        googleIntent.setData(Uri.parse(url));
+        return googleIntent;
     }
 
     public static PendingIntent getPendingShareIntent(LogEntry logEntry, Context context) {
