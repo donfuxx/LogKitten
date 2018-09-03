@@ -1,6 +1,7 @@
 package com.appham.logkitten;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,9 +44,18 @@ public class LogDetailActivity extends AppCompatActivity {
         } else if (id == R.id.action_settings) {
             startActivity(SettingsActivity.getLaunchIntent(this));
             return true;
+        } else if (id == R.id.action_info) {
+            gotoInfo();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void gotoInfo() {
+        Intent infoIntent = new Intent(Intent.ACTION_VIEW);
+        infoIntent.setData(Uri.parse("https://github.com/donfuxx/LogKitten"));
+        startActivity(infoIntent);
     }
 
     private void shareLogText() {

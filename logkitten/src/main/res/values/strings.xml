@@ -4,6 +4,7 @@
     <string name="logkitten_app_name">@string/app_name</string>
     <string name="logkitten_lib_name">Log Kitten</string>
     <string name="logkitten_action_settings">Settings</string>
+    <string name="logkitten_action_info">Info</string>
     <string name="logkitten_action_share">Share</string>
     <string name="logkitten_log_details">Log Kitten Details</string>
     <string name="logkitten_started_service">■ Started LogKitten Service! ■</string>
