@@ -21,7 +21,8 @@ import com.appham.logkitten.view.LogDetailActivity;
 
 public class NotificationFactory {
 
-    public static Notification createServiceNotification(Context context) {
+    @NonNull
+    public static Notification createServiceNotification(@NonNull Context context) {
         PendingIntent pendingStopIntent = IntentFactory.getPendingStopIntent(context);
         PendingIntent pendingLogsIntent = IntentFactory.getPendingLogsIntent(context,
                 new Intent(context, LogDetailActivity.class));
@@ -47,7 +48,7 @@ public class NotificationFactory {
         return notification;
     }
 
-    private static void createNotificationChannel(LogKittenChannel channelType, Context context) {
+    private static void createNotificationChannel(@NonNull LogKittenChannel channelType, @NonNull Context context) {
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationChannel channel = new NotificationChannel(channelType.name(),
                     channelType.getChannelName(),
@@ -61,7 +62,7 @@ public class NotificationFactory {
         }
     }
 
-    public static void newNotification(int id, LogEntry logEntry, Context context) {
+    public static void newNotification(int id, @NonNull LogEntry logEntry, @NonNull Context context) {
         if (!logEntry.getLevel().matches("[EWC]")) return;
 
         PendingIntent pendingDetailsIntent = IntentFactory.getPendingDetailsIntent(logEntry, context);
@@ -95,6 +96,7 @@ public class NotificationFactory {
         notificationManager.notify(id, builder.build());
     }
 
+    @NonNull
     private static @ColorRes int getColorRes(@NonNull String level) {
         if (level.equals("C")) {
             return R.color.logkitten_magenta;
