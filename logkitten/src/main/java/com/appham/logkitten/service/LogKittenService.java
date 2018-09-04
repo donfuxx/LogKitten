@@ -8,7 +8,6 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -98,29 +97,8 @@ public class LogKittenService extends Service {
                             break;
                         }
 
-                        LogEntry logEntry = LogEntryFactory.buildLogEntry(line);
-
-                        if ((!TextUtils.isEmpty(logEntry.getPid()) && !TextUtils.isEmpty(prevEntry.getPid())) &&
-                                !prevEntry.getPidLevel().equals(logEntry.getPidLevel())) {
-                            prevEntry.setContent(prevEntry.getContent());
-                            NotificationFactory.newNotification(Integer.parseInt(
-                                    prevEntry.getPid().split("\\D")[0]), prevEntry, LogKittenService.this);
-                            prevEntry = logEntry;
-                            soundMachine.meow();
-                        }
-                        if (!TextUtils.isEmpty(logEntry.getPid()) && TextUtils.isEmpty(prevEntry.getPid())) {
-                            prevEntry = logEntry;
-                        } else if ((TextUtils.isEmpty(logEntry.getPid()) && !TextUtils.isEmpty(prevEntry.getContent())) ||
-                                prevEntry.getPid().equals(logEntry.getPid())) {
-                            prevEntry.setPid(logEntry.getPid());
-                            prevEntry.setLevel(logEntry.getLevel());
-                            prevEntry.setContent(prevEntry.getContent() + "\n" + logEntry.getContent());
-                            if (prevEntry.getPid().matches("\\d+\\s+\\d+")) {
-                                NotificationFactory.newNotification(
-                                        Integer.parseInt(prevEntry.getPid().split("\\D")[0]),
-                                        prevEntry, LogKittenService.this);
-                            }
-                        }
+                        prevEntry = LogcatProcessor.processLogLine(line,
+                                prevEntry, soundMachine, LogKittenService.this);
 
 
                     } while (!Thread.interrupted() && line != null);
