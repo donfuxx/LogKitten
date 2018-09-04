@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 public class SoundMachine {
 
@@ -35,6 +36,7 @@ public class SoundMachine {
         sounds = null;
     }
 
+    @NonNull
     private SoundPool createSoundPool() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return createNewSoundPool();
@@ -44,6 +46,7 @@ public class SoundMachine {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @NonNull
     private SoundPool createNewSoundPool() {
         AudioAttributes attributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
@@ -55,6 +58,7 @@ public class SoundMachine {
     }
 
     @SuppressWarnings("deprecation")
+    @NonNull
     private SoundPool createOldSoundPool() {
         return new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
     }
