@@ -26,7 +26,7 @@ public class LogcatProcessor {
     }
 
     @NonNull
-    private static BufferedReader getLogcatReader(String[] progArray) throws IOException {
+    public static BufferedReader getLogcatReader(String[] progArray) throws IOException {
         Process process = Runtime.getRuntime().exec(progArray);
         return new BufferedReader(
                 new InputStreamReader(process.getInputStream()));

@@ -12,13 +12,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.appham.logkitten.LogcatProcessor;
 import com.appham.logkitten.R;
 import com.appham.logkitten.SoundMachine;
 import com.appham.logkitten.notifications.NotificationFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
@@ -77,18 +77,15 @@ public class LogKittenService extends Service {
         logThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Process logcat;
-                BufferedReader br = null;
+                BufferedReader logReader = null;
                 try {
-//                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
-                    logcat = Runtime.getRuntime().exec(new String[]{"logcat", loglevel});
-                    br = new BufferedReader(new InputStreamReader(logcat.getInputStream()), 4 * 1024);
+                    logReader = LogcatProcessor.getLogcatReader(new String[]{"logcat", loglevel});
+
                     String line;
                     LogEntry prevEntry = new LogEntry("", "", "", "");
 
-
                     do {
-                        line = br.readLine();
+                        line = logReader.readLine();
 
                         if (line == null) {
                             NotificationFactory.newNotification(
@@ -133,9 +130,9 @@ public class LogKittenService extends Service {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    if (br != null) {
+                    if (logReader != null) {
                         try {
-                            br.close();
+                            logReader.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
