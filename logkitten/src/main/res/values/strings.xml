@@ -15,6 +15,9 @@
     <string name="logkitten_pref_loglevel_summary">Select the minimum log level severity to trigger a notification</string>
     <string name="logkitten_pref_loglevel_key" translatable="false">logkitten_pref_loglevel_key</string>
     <string name="logkitten_pref_loglevel_default" translatable="false">*:E</string>
+    <string name="logkitten_pref_sound_key">logkitten_pref_sound_key</string>
+    <string name="logkitten_pref_sound_summ">Enable notification sound</string>
+    <string name="logkitten_pref_sound">Sound</string>
     <string name="logkitten_prefs" translatable="false">logkitten_prefs</string>
     <string name="logkitten_powered_by">\n»\n\n
         ════════════════════════════════ \n

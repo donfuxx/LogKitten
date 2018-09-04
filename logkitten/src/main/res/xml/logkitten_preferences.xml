@@ -10,4 +10,10 @@
         android:entryValues="@array/logkitten_pref_loglevel_values"
         android:defaultValue="@string/logkitten_pref_loglevel_default" />
 
+    <CheckBoxPreference
+        android:key="@string/logkitten_pref_sound_key"
+        android:title="@string/logkitten_pref_sound"
+        android:summary="@string/logkitten_pref_sound_summ"
+        android:defaultValue="true" />
+
 </PreferenceScreen>

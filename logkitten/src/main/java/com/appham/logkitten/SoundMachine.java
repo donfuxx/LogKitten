@@ -2,13 +2,17 @@ package com.appham.logkitten;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 public class SoundMachine {
 
+    private final SharedPreferences prefs;
+    private final String soundPrefKey;
     private SoundPool sounds;
 
     private final int meow;
@@ -16,10 +20,14 @@ public class SoundMachine {
     public SoundMachine(Context context) {
         sounds = createSoundPool();
         meow = sounds.load(context, R.raw.logkitten_meow, 1);
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        soundPrefKey = context.getString(R.string.logkitten_pref_sound_key);
     }
 
     public void meow() {
-        sounds.play(meow, 1, 1, 1, 0, 1);
+        if (prefs.getBoolean(soundPrefKey, true)) {
+            sounds.play(meow, 1, 1, 1, 0, 1);
+        }
     }
 
     public void release() {
