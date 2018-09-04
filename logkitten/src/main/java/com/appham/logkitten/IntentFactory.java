@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import com.appham.logkitten.service.LogEntry;
 import com.appham.logkitten.service.LogKittenService;
 import com.appham.logkitten.view.LogDetailActivity;
+import com.appham.logkitten.view.SettingsActivity;
 
 import static com.appham.logkitten.service.LogKittenService.STOP_SERVICE;
 
@@ -40,6 +41,15 @@ public class IntentFactory {
         return PendingIntent.getActivity(context,
                 0,
                 googleIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    public static PendingIntent getPendingSettingsIntent(Context context) {
+        Intent settingsIntent = SettingsActivity.getLaunchIntent(context);
+
+        return PendingIntent.getActivity(context,
+                0,
+                settingsIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 

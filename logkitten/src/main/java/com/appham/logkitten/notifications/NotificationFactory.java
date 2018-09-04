@@ -25,6 +25,7 @@ public class NotificationFactory {
         PendingIntent pendingStopIntent = IntentFactory.getPendingStopIntent(context);
         PendingIntent pendingLogsIntent = IntentFactory.getPendingLogsIntent(context,
                 new Intent(context, LogDetailActivity.class));
+        PendingIntent pendingSettingsIntent = IntentFactory.getPendingSettingsIntent(context);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.logkitten_ic_notification)
@@ -37,6 +38,7 @@ public class NotificationFactory {
                 .setGroup(LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .addAction(R.drawable.logkitten_ic_notification, "Stop", pendingStopIntent)
                 .addAction(R.drawable.logkitten_ic_notification, "Show Logs", pendingLogsIntent)
+                .addAction(R.drawable.logkitten_ic_notification, "Settings", pendingSettingsIntent)
                 .setContentIntent(pendingLogsIntent);
 
         Notification notification = builder.build();
