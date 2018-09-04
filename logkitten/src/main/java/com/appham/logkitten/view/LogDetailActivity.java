@@ -10,12 +10,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.appham.logkitten.IntentFactory;
+import com.appham.logkitten.LogcatProcessor;
 import com.appham.logkitten.R;
 import com.appham.logkitten.service.LogEntry;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class LogDetailActivity extends AppCompatActivity {
 
@@ -80,19 +77,6 @@ public class LogDetailActivity extends AppCompatActivity {
     }
 
     private void dumpLogcat() {
-        try {
-            Process process = Runtime.getRuntime().exec("logcat -d");
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-
-            StringBuilder log = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line).append("\n");
-            }
-            txtLogDetail.setText(log.toString() + getString(R.string.logkitten_powered_by));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        txtLogDetail.setText(LogcatProcessor.dumpLogcat() + getString(R.string.logkitten_powered_by));
     }
 }
