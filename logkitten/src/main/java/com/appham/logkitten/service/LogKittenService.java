@@ -1,4 +1,4 @@
-package com.appham.logkitten;
+package com.appham.logkitten.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.appham.logkitten.R;
+import com.appham.logkitten.SoundMachine;
 import com.appham.logkitten.notifications.NotificationFactory;
 
 import java.io.BufferedReader;
@@ -80,7 +82,7 @@ public class LogKittenService extends Service {
                 try {
 //                    Runtime.getRuntime().exec(new String[]{"logcat", "-c"});
                     logcat = Runtime.getRuntime().exec(new String[]{"logcat", loglevel});
-                    br = new BufferedReader(new InputStreamReader(logcat.getInputStream()),4*1024);
+                    br = new BufferedReader(new InputStreamReader(logcat.getInputStream()), 4 * 1024);
                     String line;
                     LogEntry prevEntry = new LogEntry("", "", "", "");
 

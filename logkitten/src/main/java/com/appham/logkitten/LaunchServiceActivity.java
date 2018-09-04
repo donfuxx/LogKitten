@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
+import com.appham.logkitten.service.LogKittenService;
+
 public class LaunchServiceActivity extends Activity {
 
     @Override

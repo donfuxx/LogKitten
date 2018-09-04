@@ -16,8 +16,8 @@ import android.support.v4.content.ContextCompat;
 
 import com.appham.logkitten.IntentFactory;
 import com.appham.logkitten.LogDetailActivity;
-import com.appham.logkitten.LogEntry;
 import com.appham.logkitten.R;
+import com.appham.logkitten.service.LogEntry;
 
 public class NotificationFactory {
 

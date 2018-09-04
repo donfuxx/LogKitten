@@ -42,7 +42,7 @@
             android:roundIcon="@mipmap/logkitten_ic_launcher_round"
             android:theme="@style/LogKittenTheme" />
 
-        <service android:name="com.appham.logkitten.LogKittenService" />
+        <service android:name="com.appham.logkitten.service.LogKittenService" />
 
     </application>
 

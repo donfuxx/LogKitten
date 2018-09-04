@@ -1,5 +1,8 @@
 package com.appham.logkitten;
 
+import com.appham.logkitten.service.LogEntry;
+import com.appham.logkitten.service.LogEntryFactory;
+
 import junit.framework.Assert;
 
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.appham.logkitten;
+package com.appham.logkitten.service;
 
 public class LogEntry {
     private String time;

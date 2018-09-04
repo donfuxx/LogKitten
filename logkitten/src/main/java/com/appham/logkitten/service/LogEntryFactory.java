@@ -1,4 +1,4 @@
-package com.appham.logkitten;
+package com.appham.logkitten.service;
 
 import android.support.annotation.NonNull;
 

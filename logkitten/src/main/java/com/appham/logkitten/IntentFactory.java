@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import static com.appham.logkitten.LogKittenService.STOP_SERVICE;
+import com.appham.logkitten.service.LogEntry;
+import com.appham.logkitten.service.LogKittenService;
+
+import static com.appham.logkitten.service.LogKittenService.STOP_SERVICE;
 
 public class IntentFactory {
 

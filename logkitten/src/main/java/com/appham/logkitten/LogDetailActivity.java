@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.appham.logkitten.service.LogEntry;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
