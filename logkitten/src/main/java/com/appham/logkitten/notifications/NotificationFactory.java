@@ -29,16 +29,16 @@ public class NotificationFactory {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, LogKittenChannel.LOG_KITTEN_SERVICE.name())
                 .setSmallIcon(R.drawable.logkitten_ic_notification)
-                .setContentTitle("Log Kitten")
-                .setContentText("Log Kitten Service is running!")
-                .setTicker("Log Kitten TICKER")
+                .setContentTitle(context.getString(R.string.logkitten_lib_name))
+                .setContentText(context.getString(R.string.logkitten_service_running))
+                .setTicker(context.getString(R.string.logkitten_ticker))
                 .setColor(Color.GREEN)
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setGroup(LogKittenChannel.LOG_KITTEN_SERVICE.name())
-                .addAction(R.drawable.logkitten_ic_notification, "Stop", pendingStopIntent)
-                .addAction(R.drawable.logkitten_ic_notification, "Show Logs", pendingLogsIntent)
-                .addAction(R.drawable.logkitten_ic_notification, "Settings", pendingSettingsIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_stop), pendingStopIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_show_logs), pendingLogsIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_settings), pendingSettingsIntent)
                 .setContentIntent(pendingLogsIntent);
 
         Notification notification = builder.build();
@@ -77,18 +77,18 @@ public class NotificationFactory {
                 .setSmallIcon(R.drawable.logkitten_ic_notification)
                 .setContentTitle(logEntry.getTitle())
                 .setContentText(logEntry.getContent())
-                .setTicker("Log Kitten TICKER")
+                .setTicker(context.getString(R.string.logkitten_ticker))
                 .setColor(ContextCompat.getColor(context, colorRes))
                 .setPriority(isError ? NotificationCompat.PRIORITY_HIGH : NotificationCompat.PRIORITY_DEFAULT)
                 .setNumber(id)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(logEntry.getContent()))
                 .setAutoCancel(true)
-                .addAction(R.drawable.logkitten_ic_notification, "Share", pendingShareIntent)
-                .addAction(R.drawable.logkitten_ic_notification, "Google it", pendingGoogleIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_share), pendingShareIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_google_it), pendingGoogleIntent)
                 .setContentIntent(pendingDetailsIntent);
 
         if (isError) {
-            builder.setGroup("Log Kitten Entries: " + logEntry.getLevel());
+            builder.setGroup(context.getString(R.string.logkitten_entries) + logEntry.getLevel());
         }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
