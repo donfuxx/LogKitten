@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.appham.logkitten.service.LogEntry;
 import com.appham.logkitten.service.LogKittenService;
+import com.appham.logkitten.view.LogDetailActivity;
 
 import static com.appham.logkitten.service.LogKittenService.STOP_SERVICE;
 

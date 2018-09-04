@@ -1,4 +1,4 @@
-package com.appham.logkitten;
+package com.appham.logkitten.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.appham.logkitten.IntentFactory;
+import com.appham.logkitten.R;
 import com.appham.logkitten.service.LogEntry;
 
 import java.io.BufferedReader;

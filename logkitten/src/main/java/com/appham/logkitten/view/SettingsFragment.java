@@ -1,7 +1,9 @@
-package com.appham.logkitten;
+package com.appham.logkitten.view;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+
+import com.appham.logkitten.R;
 
 public class SettingsFragment extends PreferenceFragment {
 

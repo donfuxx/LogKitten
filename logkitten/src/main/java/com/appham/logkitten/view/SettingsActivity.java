@@ -1,4 +1,4 @@
-package com.appham.logkitten;
+package com.appham.logkitten.view;
 
 import android.content.Context;
 import android.content.Intent;

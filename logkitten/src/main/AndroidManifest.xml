@@ -5,7 +5,7 @@
     <application>
 
         <activity
-            android:name="com.appham.logkitten.LogDetailActivity"
+            android:name="com.appham.logkitten.view.LogDetailActivity"
             android:excludeFromRecents="true"
             android:icon="@mipmap/logkitten_ic_launcher"
             android:label="@string/logkitten_log_details"
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name="com.appham.logkitten.LaunchServiceActivity"
+            android:name="com.appham.logkitten.view.LaunchServiceActivity"
             android:excludeFromRecents="true"
             android:icon="@mipmap/logkitten_ic_launcher"
             android:label="@string/logkitten_app_name"
@@ -36,7 +36,7 @@
         </activity>
 
         <activity
-            android:name="com.appham.logkitten.SettingsActivity"
+            android:name="com.appham.logkitten.view.SettingsActivity"
             android:icon="@mipmap/logkitten_ic_launcher"
             android:label="@string/logkitten_action_settings"
             android:roundIcon="@mipmap/logkitten_ic_launcher_round"
