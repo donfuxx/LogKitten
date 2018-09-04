@@ -1,15 +1,10 @@
-package com.appham.logkitten.notifications;
+package com.appham.logkitten;
 
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-
-import com.appham.logkitten.LogDetailActivity;
-import com.appham.logkitten.LogEntry;
-import com.appham.logkitten.LogKittenService;
-import com.appham.logkitten.R;
 
 import static com.appham.logkitten.LogKittenService.STOP_SERVICE;
 
