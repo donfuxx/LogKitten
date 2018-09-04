@@ -15,15 +15,18 @@ import static com.appham.logkitten.service.LogKittenService.STOP_SERVICE;
 
 public class IntentFactory {
 
-    public static PendingIntent getPendingDetailsIntent(LogEntry logEntry, Context context) {
+    @NonNull
+    public static PendingIntent getPendingDetailsIntent(@NonNull LogEntry logEntry,
+                                                        @NonNull Context context) {
         Intent notificationIntent = getIntentShareExtras(logEntry,
                 new Intent(context, LogDetailActivity.class), context);
 
         return getPendingLogsIntent(context, notificationIntent);
     }
 
-
-    public static PendingIntent getPendingLogsIntent(Context context, Intent notificationIntent) {
+    @NonNull
+    public static PendingIntent getPendingLogsIntent(@NonNull Context context,
+                                                     @NonNull Intent notificationIntent) {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
@@ -35,7 +38,9 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static PendingIntent getPendingGoogleIntent(LogEntry logEntry, Context context) {
+    @NonNull
+    public static PendingIntent getPendingGoogleIntent(@NonNull LogEntry logEntry,
+                                                       @NonNull Context context) {
         Intent googleIntent = getBrowserIntent("https://www.google.com/search?q=" + logEntry.getContent());
 
         return PendingIntent.getActivity(context,
@@ -44,7 +49,8 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static PendingIntent getPendingSettingsIntent(Context context) {
+    @NonNull
+    public static PendingIntent getPendingSettingsIntent(@NonNull Context context) {
         Intent settingsIntent = SettingsActivity.getLaunchIntent(context);
 
         return PendingIntent.getActivity(context,
@@ -60,7 +66,9 @@ public class IntentFactory {
         return googleIntent;
     }
 
-    public static PendingIntent getPendingShareIntent(LogEntry logEntry, Context context) {
+    @NonNull
+    public static PendingIntent getPendingShareIntent(@NonNull LogEntry logEntry,
+                                                      @NonNull Context context) {
         Intent chooserIntent = getChooserIntent(logEntry, context);
 
         return PendingIntent.getActivity(context,
@@ -69,7 +77,8 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static PendingIntent getPendingStopIntent(Context context) {
+    @NonNull
+    public static PendingIntent getPendingStopIntent(@NonNull Context context) {
         Intent stopIntent = new Intent(context, LogKittenService.class);
         stopIntent.setAction(STOP_SERVICE);
 
@@ -79,12 +88,16 @@ public class IntentFactory {
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static Intent getChooserIntent(LogEntry logEntry, Context context) {
+    @NonNull
+    public static Intent getChooserIntent(@NonNull LogEntry logEntry, @NonNull Context context) {
         Intent shareIntent = getIntentShareExtras(logEntry, new Intent(), context);
         return Intent.createChooser(shareIntent, context.getResources().getText(R.string.logkitten_lib_name));
     }
 
-    private static Intent getIntentShareExtras(LogEntry logEntry, Intent shareIntent, Context context) {
+    @NonNull
+    private static Intent getIntentShareExtras(@NonNull LogEntry logEntry,
+                                               @NonNull Intent shareIntent,
+                                               @NonNull Context context) {
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent() +
                 context.getString(R.string.logkitten_powered_by));
