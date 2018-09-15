@@ -45,7 +45,7 @@ public class DeviceInfo {
 
     @Override
     public String toString() {
-        return "Device info: " + model + ", " + brand + ", " + product + ", " + manufacturer +
-                ", " + device + ", " + os;
+        return "\uD83D\uDC31 Device info: " + model + ", " + brand + ", " + product + ", " + manufacturer +
+                ", " + device + ", " + os + " \uD83D\uDC31";
     }
 }

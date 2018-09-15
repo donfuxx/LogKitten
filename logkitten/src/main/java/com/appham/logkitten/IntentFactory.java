@@ -99,8 +99,8 @@ public class IntentFactory {
                                                @NonNull Intent shareIntent,
                                                @NonNull Context context) {
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent() +
-                context.getString(R.string.logkitten_powered_by));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, logEntry.getContent() + "\n" +
+                LogcatProcessor.poweredByString(context));
         shareIntent.setType("text/plain");
         return shareIntent;
     }

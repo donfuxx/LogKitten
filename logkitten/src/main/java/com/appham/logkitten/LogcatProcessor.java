@@ -68,4 +68,9 @@ public class LogcatProcessor {
         return new BufferedReader(
                 new InputStreamReader(process.getInputStream()));
     }
+
+    @NonNull
+    public static String poweredByString(@NonNull Context context) {
+        return new DeviceInfo().toString() + context.getString(R.string.logkitten_powered_by);
+    }
 }

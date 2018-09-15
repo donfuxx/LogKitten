@@ -77,6 +77,7 @@ public class LogDetailActivity extends AppCompatActivity {
     }
 
     private void dumpLogcat() {
-        txtLogDetail.setText(LogcatProcessor.dumpLogcat() + getString(R.string.logkitten_powered_by));
+        txtLogDetail.setText(LogcatProcessor.dumpLogcat() + "\n" +
+                LogcatProcessor.poweredByString(this));
     }
 }

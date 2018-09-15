@@ -11,7 +11,6 @@ import android.support.annotation.StringRes;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.appham.logkitten.DeviceInfo;
 import com.appham.logkitten.LogcatProcessor;
 import com.appham.logkitten.R;
 import com.appham.logkitten.SoundMachine;
@@ -167,9 +166,7 @@ public class LogKittenService extends Service {
 
                 StringWriter stringWriter = new StringWriter();
                 paramThrowable.printStackTrace(new PrintWriter(stringWriter));
-                String exceptionStr = stringWriter.toString() +
-                        getString(R.string.logkitten_powered_by) +
-                        new DeviceInfo().toString();
+                String exceptionStr = stringWriter.toString();
 
                 LogEntry logEntry = new LogEntry(" ☠ CRASH ☠ : " + new Date().toString(),
                         Thread.currentThread().getId() + "",
@@ -187,8 +184,8 @@ public class LogKittenService extends Service {
     }
 
     private void toastEvent(@StringRes int stringRes) {
-        Log.d(this.getClass().getName(), getString(stringRes));
-        Log.d(this.getClass().getName(), getString(R.string.logkitten_powered_by));
+        Log.d(this.getClass().getName(), getString(stringRes) + "\n" +
+                LogcatProcessor.poweredByString(getApplicationContext()));
         Toast.makeText(getApplicationContext(), stringRes, Toast.LENGTH_LONG).show();
     }
 

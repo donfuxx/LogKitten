@@ -25,10 +25,10 @@
     <string name="logkitten_pref_sound_summ">Enable notification sound</string>
     <string name="logkitten_pref_sound">Sound</string>
     <string name="logkitten_prefs" translatable="false">logkitten_prefs</string>
-    <string name="logkitten_powered_by">\n🐱\n\n
-        ════════════════════════════════ \n
-          Logcat powered by LogKitten®   \n
-        ════════════════════════════════ \n\n🐱\n
+    <string name="logkitten_powered_by">\n\n
+        ═══════════════════════════════ \n
+         Logcat powered by LogKitten®   \n
+        ═══════════════════════════════ \n\n
     </string>
 
     <!-- Placeholder app name, will be overridden by the app_name from app strings -->
