@@ -2,7 +2,12 @@ package com.appham.logkitten;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 
 import com.appham.logkitten.notifications.NotificationFactory;
 import com.appham.logkitten.service.LogEntry;
@@ -15,19 +20,28 @@ import java.io.InputStreamReader;
 public class LogcatProcessor {
 
     @NonNull
-    public static String dumpLogcat() {
-        final StringBuilder log = new StringBuilder();
+    public static SpannableStringBuilder dumpLogcat(@NonNull Context context) {
+        final SpannableStringBuilder log = new SpannableStringBuilder();
         try {
             BufferedReader bufferedReader = getLogcatReader(new String[]{"logcat", "-d"});
-
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                log.append(line).append("\n");
+                SpannableString spanLine = new SpannableString(line);
+                if (LogEntryFactory.findLevel(line).equals("W")) {
+                    spanLine.setSpan(new ForegroundColorSpan(
+                                    ContextCompat.getColor(context, R.color.logkitten_orange)),
+                            0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else if (LogEntryFactory.findLevel(line).equals("E")) {
+                    spanLine.setSpan(new ForegroundColorSpan(
+                                    ContextCompat.getColor(context, R.color.logkitten_red)),
+                            0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+                log.append(spanLine).append("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            return log.toString();
+            return log;
         }
     }
 

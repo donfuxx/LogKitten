@@ -15,23 +15,42 @@ public class LogEntryFactory {
     public static LogEntry buildLogEntry(@NonNull String logLine) {
 
         // datetime
-        Matcher timeMatcher = timePattern.matcher(logLine);
-        String time = timeMatcher.find() ? timeMatcher.group() : "";
+        String time = findTime(logLine);
 
         // PID-TID
-        Matcher pidMatcher = pidPattern.matcher(logLine);
-        String pid = pidMatcher.find() ? pidMatcher.group().trim() : "";
+        String pid = findPid(logLine);
 
         // level
-        Matcher levelMatcher = levelPattern.matcher(logLine);
-        String level = levelMatcher.find() ? levelMatcher.group().trim() : "";
+        String level = findLevel(logLine);
 
         // content
-        String content = logLine.replaceFirst(time, "")
-                .replaceFirst(pid, "").replaceFirst(level, "").trim();
+        String content = findContent(logLine, time, pid, level);
 
         return new LogEntry(time, pid, level, content);
+    }
 
+    @NonNull
+    public static String findTime(@NonNull String logLine) {
+        Matcher timeMatcher = timePattern.matcher(logLine);
+        return timeMatcher.find() ? timeMatcher.group() : "";
+    }
+
+    @NonNull
+    public static String findPid(@NonNull String logLine) {
+        Matcher pidMatcher = pidPattern.matcher(logLine);
+        return pidMatcher.find() ? pidMatcher.group().trim() : "";
+    }
+
+    @NonNull
+    public static String findLevel(@NonNull String logLine) {
+        Matcher levelMatcher = levelPattern.matcher(logLine);
+        return levelMatcher.find() ? levelMatcher.group().trim() : "";
+    }
+
+    @NonNull
+    public static String findContent(@NonNull String logLine, String time, String pid, String level) {
+        return logLine.replaceFirst(time, "")
+                .replaceFirst(pid, "").replaceFirst(level, "").trim();
     }
 
 }
