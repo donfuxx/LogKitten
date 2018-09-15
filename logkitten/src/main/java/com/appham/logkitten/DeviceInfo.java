@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 public class DeviceInfo {
 
-    private String model, brand, product, manufacturer, device;
+    private String model, brand, product, manufacturer, device, os;
 
     public DeviceInfo() {
         model = Build.MODEL;
@@ -13,6 +13,7 @@ public class DeviceInfo {
         product = Build.PRODUCT;
         manufacturer = Build.MANUFACTURER;
         device = Build.DEVICE;
+        os = "Android " + Build.VERSION.RELEASE + ", API " + Build.VERSION.SDK_INT;
     }
 
     @NonNull
@@ -38,9 +39,13 @@ public class DeviceInfo {
         return device;
     }
 
-    @Override
-    public String toString() {
-        return "Device info: " + model + ", " + brand + ", " + product + ", " + manufacturer + ", " + device;
+    public String getOs() {
+        return os;
     }
 
+    @Override
+    public String toString() {
+        return "Device info: " + model + ", " + brand + ", " + product + ", " + manufacturer +
+                ", " + device + ", " + os;
+    }
 }
