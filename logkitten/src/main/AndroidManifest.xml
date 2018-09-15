@@ -21,6 +21,16 @@
         </activity>
 
         <activity
+            android:name="com.appham.logkitten.view.SettingsActivity"
+            android:excludeFromRecents="true"
+            android:icon="@mipmap/logkitten_ic_launcher"
+            android:label="@string/logkitten_action_settings"
+            android:launchMode="singleTask"
+            android:roundIcon="@mipmap/logkitten_ic_launcher_round"
+            android:taskAffinity="com.appham.logkitten.settings"
+            android:theme="@style/LogKittenTheme" />
+
+        <activity
             android:name="com.appham.logkitten.view.LaunchServiceActivity"
             android:excludeFromRecents="true"
             android:icon="@mipmap/logkitten_ic_launcher"
@@ -33,14 +43,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity
-            android:name="com.appham.logkitten.view.SettingsActivity"
-            android:icon="@mipmap/logkitten_ic_launcher"
-            android:label="@string/logkitten_action_settings"
-            android:roundIcon="@mipmap/logkitten_ic_launcher_round"
-            android:theme="@style/LogKittenTheme" />
+        </activity>
 
         <service android:name="com.appham.logkitten.service.LogKittenService" />
 
