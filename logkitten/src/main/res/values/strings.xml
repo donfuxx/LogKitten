@@ -12,9 +12,9 @@
     <string name="logkitten_log_details">Log Kitten Details</string>
     <string name="logkitten_service_running">Log Kitten Service is running!</string>
     <string name="logkitten_ticker">Log Kitten TICKER</string>
-    <string name="logkitten_started_service">■ Started LogKitten Service! ■</string>
-    <string name="logkitten_already_started_service">■ LogKitten Service was already started! ■</string>
-    <string name="logkitten_stopped_service">■ Stopped LogKitten Service! ■</string>
+    <string name="logkitten_started_service">🐱 Started LogKitten Service! 🐱</string>
+    <string name="logkitten_already_started_service">🐱 LogKitten Service was already started! 🐱</string>
+    <string name="logkitten_stopped_service">🐱 Stopped LogKitten Service! 🐱</string>
     <string name="logkitten_entries">Log Kitten Entries:</string>
     <string name="logkitten_pref_loglevel_title">Minimum notification log level</string>
     <string name="logkitten_pref_loglevel_dialogTitle">Select min log level</string>
@@ -25,10 +25,10 @@
     <string name="logkitten_pref_sound_summ">Enable notification sound</string>
     <string name="logkitten_pref_sound">Sound</string>
     <string name="logkitten_prefs" translatable="false">logkitten_prefs</string>
-    <string name="logkitten_powered_by">\n»\n\n
+    <string name="logkitten_powered_by">\n🐱\n\n
         ════════════════════════════════ \n
           Logcat powered by LogKitten®   \n
-        ════════════════════════════════ \n\n«\n
+        ════════════════════════════════ \n\n🐱\n
     </string>
 
     <!-- Placeholder app name, will be overridden by the app_name from app strings -->
