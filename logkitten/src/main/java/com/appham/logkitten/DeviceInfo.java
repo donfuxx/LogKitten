@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 
 public class DeviceInfo {
 
-    private String model, brand, product;
+    private String model, brand, product, manufacturer, device;
 
     public DeviceInfo() {
         model = Build.MODEL;
         brand = Build.BRAND;
         product = Build.PRODUCT;
+        manufacturer = Build.MANUFACTURER;
+        device = Build.DEVICE;
     }
 
     @NonNull
@@ -28,9 +30,17 @@ public class DeviceInfo {
         return product;
     }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public String getDevice() {
+        return device;
+    }
+
     @Override
     public String toString() {
-        return "Device info: " + model + ", " + brand + ", " + product;
+        return "Device info: " + model + ", " + brand + ", " + product + ", " + manufacturer + ", " + device;
     }
-    
+
 }
