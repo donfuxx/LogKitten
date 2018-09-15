@@ -2,4 +2,6 @@
     <string name="app_name">Demo LogKitten</string>
     <string name="logkitten_demo">LogKitten Demo!</string>
     <string name="test_crash">Test Crash!</string>
+    <string name="test_error">Test Error Log!</string>
+    <string name="test_warning">Test Warning Log!</string>
 </resources>
