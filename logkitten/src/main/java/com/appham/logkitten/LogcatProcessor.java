@@ -7,7 +7,9 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 
 import com.appham.logkitten.notifications.NotificationFactory;
 import com.appham.logkitten.service.LogEntry;
@@ -16,6 +18,7 @@ import com.appham.logkitten.service.LogEntryFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 public class LogcatProcessor {
 
@@ -27,6 +30,8 @@ public class LogcatProcessor {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 SpannableString spanLine = new SpannableString(line);
+
+                // colorize warnings and error logs
                 if (LogEntryFactory.findLevel(line).equals("W")) {
                     spanLine.setSpan(new ForegroundColorSpan(
                                     ContextCompat.getColor(context, R.color.logkitten_orange)),
@@ -36,6 +41,20 @@ public class LogcatProcessor {
                                     ContextCompat.getColor(context, R.color.logkitten_red)),
                             0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
+
+                // make urls clickable
+                URL url = LogEntryFactory.findUrl(line);
+                if (url != null) {
+                    int urlStart = spanLine.toString().indexOf(url.toString());
+                    int urlEnd = urlStart + url.toString().length();
+                    spanLine.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(View widget) {
+                            context.startActivity(IntentFactory.getBrowserIntent(url.toString()));
+                        }
+                    }, urlStart, urlEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+
                 log.append(spanLine).append("\n");
             }
         } catch (IOException e) {

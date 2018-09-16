@@ -27,4 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public void crash(View view) {
         throw new RuntimeException("Test Crash Demo");
     }
+
+    public void url(View view) {
+        Log.i("Demo", "Test Log with Url: https://www.github.com/donfuxx/LogKitten !");
+    }
 }

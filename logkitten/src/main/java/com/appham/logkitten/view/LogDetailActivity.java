@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ public class LogDetailActivity extends AppCompatActivity {
         setContentView(R.layout.logkitten_activity_log_detail);
         txtLogDetail = findViewById(R.id.txtLogDetail);
         txtLogDetail.setMovementMethod(new ScrollingMovementMethod());
+        txtLogDetail.setMovementMethod(LinkMovementMethod.getInstance());
         setTextFromIntent();
     }
 

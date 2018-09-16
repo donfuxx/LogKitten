@@ -39,4 +39,12 @@
         android:text="@string/test_crash"
         android:onClick="crash" />
 
+    <Button
+        android:id="@+id/btnUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/test_url"
+        android:onClick="url" />
+
 </LinearLayout>

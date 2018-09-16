@@ -1,7 +1,12 @@
 package com.appham.logkitten.service;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.util.Patterns;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +56,20 @@ public class LogEntryFactory {
     public static String findContent(@NonNull String logLine, String time, String pid, String level) {
         return logLine.replaceFirst(time, "")
                 .replaceFirst(pid, "").replaceFirst(level, "").trim();
+    }
+
+    @Nullable
+    public static URL findUrl(@NonNull String logLine) {
+        Matcher urlMatcher = Patterns.WEB_URL.matcher(logLine);
+        URL url = null;
+        if (urlMatcher.find()) {
+            try {
+                url = new URL(urlMatcher.group().trim());
+            } catch (MalformedURLException e) {
+                Log.e(LogEntryFactory.class.getName(), e.getMessage());
+            }
+        }
+        return url;
     }
 
 }
