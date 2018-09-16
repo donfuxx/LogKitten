@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="logkitten_orange">#FF8C00</color>
+    <color name="logkitten_orange_red">#FF4500</color>
     <color name="logkitten_red">#FF0000</color>
     <color name="logkitten_magenta">#FF00FF</color>
     <color name="logkitten_ic_launcher_background">#FFFFFF</color>

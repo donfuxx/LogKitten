@@ -44,7 +44,7 @@ public class LogcatProcessor {
     private static void colorizeLog(@NonNull Context context, @NonNull SpannableString spanLine) {
         if (LogEntryFactory.findLevel(spanLine.toString()).equals("W")) {
             spanLine.setSpan(new ForegroundColorSpan(
-                            ContextCompat.getColor(context, R.color.logkitten_orange)),
+                            ContextCompat.getColor(context, R.color.logkitten_orange_red)),
                     0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (LogEntryFactory.findLevel(spanLine.toString()).equals("E")) {
             spanLine.setSpan(new ForegroundColorSpan(
