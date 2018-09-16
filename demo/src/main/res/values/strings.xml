@@ -5,4 +5,6 @@
     <string name="test_error">Test Error Log!</string>
     <string name="test_warning">Test Warning Log!</string>
     <string name="test_url">Test Log with Url!</string>
+    <string name="logkitten_demo_desc">Launch first the LogKitten Service by clicking the LogKitten icon in the app launcher.
+        Then you can use the below buttons to produce some logs in the logcat and you can test the behaviour of LogKitten.</string>
 </resources>
