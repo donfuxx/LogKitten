@@ -30,37 +30,40 @@ public class LogcatProcessor {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 SpannableString spanLine = new SpannableString(line);
-
-                // colorize warnings and error logs
-                if (LogEntryFactory.findLevel(line).equals("W")) {
-                    spanLine.setSpan(new ForegroundColorSpan(
-                                    ContextCompat.getColor(context, R.color.logkitten_orange)),
-                            0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else if (LogEntryFactory.findLevel(line).equals("E")) {
-                    spanLine.setSpan(new ForegroundColorSpan(
-                                    ContextCompat.getColor(context, R.color.logkitten_red)),
-                            0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-
-                // make urls clickable
-                URL url = LogEntryFactory.findUrl(line);
-                if (url != null) {
-                    int urlStart = spanLine.toString().indexOf(url.toString());
-                    int urlEnd = urlStart + url.toString().length();
-                    spanLine.setSpan(new ClickableSpan() {
-                        @Override
-                        public void onClick(View widget) {
-                            context.startActivity(IntentFactory.getBrowserIntent(url.toString()));
-                        }
-                    }, urlStart, urlEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-
+                colorizeLog(context, spanLine);
+                makeUrlsClickable(context, spanLine);
                 log.append(spanLine).append("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             return log;
+        }
+    }
+
+    private static void colorizeLog(@NonNull Context context, @NonNull SpannableString spanLine) {
+        if (LogEntryFactory.findLevel(spanLine.toString()).equals("W")) {
+            spanLine.setSpan(new ForegroundColorSpan(
+                            ContextCompat.getColor(context, R.color.logkitten_orange)),
+                    0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (LogEntryFactory.findLevel(spanLine.toString()).equals("E")) {
+            spanLine.setSpan(new ForegroundColorSpan(
+                            ContextCompat.getColor(context, R.color.logkitten_red)),
+                    0, spanLine.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+    }
+
+    private static void makeUrlsClickable(@NonNull Context context, SpannableString spanLine) {
+        URL url = LogEntryFactory.findUrl(spanLine.toString());
+        if (url != null) {
+            int urlStart = spanLine.toString().indexOf(url.toString());
+            int urlEnd = urlStart + url.toString().length();
+            spanLine.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    context.startActivity(IntentFactory.getBrowserIntent(url.toString()));
+                }
+            }, urlStart, urlEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
