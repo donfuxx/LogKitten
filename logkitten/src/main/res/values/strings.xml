@@ -3,14 +3,14 @@
     <public />
     <string name="logkitten_app_name">@string/app_name</string>
     <string name="logkitten_lib_name">Log Kitten</string>
-    <string name="logkitten_action_settings">Settings</string>
-    <string name="logkitten_action_info">Info</string>
-    <string name="logkitten_action_share">Share</string>
-    <string name="logkitten_action_stop">Stop</string>
-    <string name="logkitten_action_show_logs">Show Logs</string>
+    <string name="logkitten_action_settings">🐱 Settings</string>
+    <string name="logkitten_action_info">🐱 Info</string>
+    <string name="logkitten_action_share">🐱 Share</string>
+    <string name="logkitten_action_stop">🐱 Stop</string>
+    <string name="logkitten_action_show_logs">🐱 Show Logs</string>
     <string name="logkitten_google_it">Google it</string>
     <string name="logkitten_log_details">Log Kitten Details</string>
-    <string name="logkitten_service_running">Log Kitten Service is running!</string>
+    <string name="logkitten_service_running">The Log Kitten Logcat monitoring Service is running!</string>
     <string name="logkitten_ticker">Log Kitten TICKER</string>
     <string name="logkitten_started_service">🐱 Started LogKitten Service! 🐱</string>
     <string name="logkitten_already_started_service">🐱 LogKitten Service was already started! 🐱</string>
