@@ -85,7 +85,7 @@ public class NotificationFactory {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(logEntry.getContent()))
                 .setAutoCancel(true)
                 .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_share), pendingShareIntent)
-                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_google_it), pendingGoogleIntent)
+                .addAction(R.drawable.logkitten_ic_notification, context.getString(R.string.logkitten_action_google_it), pendingGoogleIntent)
                 .setContentIntent(pendingDetailsIntent);
 
         if (isError) {

@@ -8,7 +8,7 @@
     <string name="logkitten_action_share">🐱 Share</string>
     <string name="logkitten_action_stop">🐱 Stop</string>
     <string name="logkitten_action_show_logs">🐱 Show Logs</string>
-    <string name="logkitten_google_it">Google it</string>
+    <string name="logkitten_action_google_it">🐱 Google it</string>
     <string name="logkitten_log_details">Log Kitten Details</string>
     <string name="logkitten_service_running">The Log Kitten Logcat monitoring Service is running!</string>
     <string name="logkitten_ticker">Log Kitten TICKER</string>
