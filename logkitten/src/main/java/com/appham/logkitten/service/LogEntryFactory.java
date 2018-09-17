@@ -3,7 +3,6 @@ package com.appham.logkitten.service;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.util.Patterns;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,6 +14,7 @@ public class LogEntryFactory {
     private static Pattern timePattern = Pattern.compile("^\\d\\d-\\d\\d\\s\\d\\d:\\d\\d:\\d\\d.\\d\\d\\d");
     private static Pattern pidPattern = Pattern.compile("\\s+\\d{3,6}\\s+\\d{3,6}\\s+");
     private static Pattern levelPattern = Pattern.compile("\\s+[VDIWEAC]\\s+");
+    private static Pattern urlPattern = Pattern.compile("(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
 
     @NonNull
     public static LogEntry buildLogEntry(@NonNull String logLine) {
@@ -60,7 +60,7 @@ public class LogEntryFactory {
 
     @Nullable
     public static URL findUrl(@NonNull String logLine) {
-        Matcher urlMatcher = Patterns.WEB_URL.matcher(logLine);
+        Matcher urlMatcher = urlPattern.matcher(logLine);
         URL url = null;
         if (urlMatcher.find()) {
             try {
