@@ -3,7 +3,6 @@ package com.appham.logkitten.service;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,7 +63,7 @@ public class LogEntryFactory {
         if (urlMatcher.find()) {
             try {
                 url = new URL(urlMatcher.group().trim());
-            } catch (MalformedURLException e) {
+            } catch (Exception e) {
                 //Log.d(LogEntryFactory.class.getName(), e.getMessage());
             }
         }
