@@ -2,7 +2,11 @@
 
 LogKitten is an **Android library module** that can be added to your Android project for example as a `debugImplementation` to make inspecting the logcat on the device easier in the following ways:
  - The LogKitten Service will be **started by clicking the "LogKitten" launcher icon** and it will monitor your app's logcat for Error and Warning level logs and will show them as notifications.
- ![logkitten_notification_screenshot](https://raw.githubusercontent.com/donfuxx/LogKitten/a25dbccee9c9445f78363994b2f62fba79951633/media/logkitten_notification_screenshot.png)
+
+LogKitten notifications | Notification expanded | LogKitten settings | Logkitten full logs
+------------ | ------------- | ------------ | -------------
+![LogKitten notifications](https://github.com/donfuxx/LogKitten/blob/master/media/logkitten-screenshot-1.png?raw=true)|![Notification expanded](https://github.com/donfuxx/LogKitten/blob/master/media/logkitten-screenshot-2.png?raw=true)|![LogKitten settings](https://github.com/donfuxx/LogKitten/blob/master/media/logkitten-screenshot-3.png?raw=true)|![Logkitten full logs](https://github.com/donfuxx/LogKitten/blob/master/media/logkitten-screenshot-4.png?raw=true)
+ 
  - Logs can be shared by clicking the **share action** in a LogKitten notification. This is a handy tool if you have Testers for your project that want to forward crash logcats to the developers or a bugtracking system like Jira etc.
  - LogKitten service can be **stopped anytime**, by clicking the "Stop" action in the Service notification.
  - LogKitten service can be **restarted anytime** by clicking the "LogKitten" launcher icon.
