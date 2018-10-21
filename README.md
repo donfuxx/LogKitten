@@ -30,5 +30,5 @@ Add it in your root build.gradle at the end of repositories:
 Add it in your app module gradle dependencies. It is recommended to use `debugImplementation`
 
     	dependencies {
-    	        debugImplementation 'com.github.donfuxx:LogKitten:1.2.0'
+    	        debugImplementation 'com.github.donfuxx:LogKitten:1.2.2'
     	}
